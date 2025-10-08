@@ -1,0 +1,10 @@
+{
+  "name": "meu-projeto",
+  "version": "1.0.0",
+  "description": "Projeto para gerar PDFs com assinatura e armazenar dados",
+  "main": "backend/app.js",
+  "scripts": {
+    "start": "node backend/app.js"
+  },
+  "dependencies": {}
+}
