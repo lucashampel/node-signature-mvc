@@ -1,0 +1,342 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .upload-section, .preview-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #2a5298;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+
+        .file-upload {
+            margin-bottom: 25px;
+        }
+
+        .file-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input:hover {
+            border-color: #2a5298;
+            background-color: #f0f5ff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:disabled {
+            background-color: #a0a0a0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-download {
+            background-color: #28a745;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .btn-download:hover {
+            background-color: #218838;
+        }
+
+        .btn-zip {
+            background-color: #fd7e14;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn-zip:hover {
+            background-color: #e96c10;
+        }
+
+        .preview-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: auto;
+            margin-bottom: 20px;
+            position: relative;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdf-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #pdfCanvas {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .field-controls {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .field-controls h3 {
+            margin-bottom: 15px;
+            color: #2a5298;
+        }
+
+        .field-list {
+            margin-bottom: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .field-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f5ff;
+            margin-bottom: 8px;
+            border-radius: 5px;
+        }
+
+        .field-name {
+            font-weight: 600;
+        }
+
+        .field-position {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .position-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .position-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .add-field-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .instructions {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .instructions h4 {
+            margin-bottom: 10px;
+            color: #2a5298;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .status-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .draggable-field {
+            position: absolute;
+            background: rgba(255, 255, 0, 0.7);
+            padding: 2px 6px;
+            border: 1px solid #333;
+            cursor: move;
+            font-size: 12px;
+            border-radius: 3px;
+            user-select: none;
+            min-width: 120px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .draggable-field:hover {
+            background: rgba(255, 255, 0, 0.9);
+        }
+
+        .csv-columns {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .csv-columns h4 {
+            margin-bottom: 10px;
+            color: #2a5298;
+        }
+
+        .columns-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .column-tag {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .column-tag.nome, .column-tag.cpf {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .download-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .progress-container {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }

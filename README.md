@@ -4,5 +4,4 @@ Um aplicativo web para gerar PDFs com assinaturas, fazer requisições HTTP e ar
 
 ## Como Rodar
 1. Instale dependências: `npm install`
-2. Configure o `.env` com a conexão do banco
-3. Rode o servidor: `npm start`
+2. Rode o servidor: `npm start`

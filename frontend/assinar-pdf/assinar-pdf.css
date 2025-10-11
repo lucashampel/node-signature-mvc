@@ -10,40 +10,30 @@ canvas {
   background: #f0f0f0;
   margin: 10px 0;
 }
-
-/* Estilização das abas */
-.tabs {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
-}
-.tab-link {
+.btn {
+  display: inline-block;
   padding: 10px 20px;
-  cursor: pointer;
-  background: #f0f0f0;
-  margin-right: 5px;
-  border-radius: 5px 5px 0 0;
-}
-.tab-link.active {
   background: #007bff;
   color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px 0;
 }
-.tab-content {
-  display: none;
+.btn:hover {
+  background: #0056b3;
 }
-.tab-content.active {
-  display: block;
+.btn-back {
+  background: #6c757d;
 }
-
-/* Estilização dos formulários */
+.btn-back:hover {
+  background: #5a6268;
+}
 form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-input[type="text"], input[type="file"], button {
+input[type="text"], button {
   padding: 8px;
   font-size: 16px;
 }

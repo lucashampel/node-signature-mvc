@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de PDFs Assinados</title>
+    <link rel="stylesheet" href="gerar-pdfs-assinados.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Geração de PDFs Assinados</h1>
+            <p class="subtitle">Carregue um PDF e baixe os documentos preenchidos</p>
+        </header>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <h2>Carregar Arquivos</h2>
+                
+                <div class="file-upload">
+                    <label class="file-label">Arquivo PDF</label>
+                    <input type="file" id="pdfFile" class="file-input" accept=".pdf">
+                </div>
+                
+                <div class="file-upload">
+                    <label class="file-label">Arquivo CSV (Nome, CPF)</label>
+                    <input type="file" id="csvFile" class="file-input" accept=".csv">
+                </div>
+                
+                <div class="csv-columns" id="csvColumnsInfo" style="display: none;">
+                    <h4>Colunas detectadas no CSV:</h4>
+                    <div class="columns-list" id="columnsList"></div>
+                </div>
+                
+                <button id="loadFilesBtn" class="btn">Carregar Arquivos</button>
+                
+                <div class="instructions">
+                    <h4>Instruções:</h4>
+                    <ol>
+                        <li>Carregue um arquivo PDF que servirá como modelo</li>
+                        <li>Carregue um arquivo CSV com as colunas "nome" e "cpf"</li>
+                        <li>Clique em "Carregar Arquivos" para visualizar o PDF</li>
+                        <li>Campos arrastáveis serão criados automaticamente para cada coluna do CSV</li>
+                        <li>Posicione os campos arrastando-os para o local desejado no PDF</li>
+                        <li>Clique em "Gerar ZIP com PDFs" para baixar todos os documentos em um arquivo ZIP</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h2>Visualização e Configuração</h2>
+                
+                <div class="preview-container" id="previewContainer">
+                    <div class="pdf-preview">
+                        <p>Carregue um PDF para visualizá-lo aqui</p>
+                    </div>
+                </div>
+                
+                <div class="field-controls">
+                    <h3>Campos de Assinatura</h3>
+                    
+                    <div class="field-list" id="fieldList">
+                        <p>Nenhum campo adicionado ainda</p>
+                    </div>
+<!--                     
+                    <div class="position-controls">
+                        <input type="text" id="fieldName" class="position-input" placeholder="Nome do campo (ex: Assinatura)">
+                        <button id="addFieldBtn" class="btn add-field-btn">Adicionar Campo Manualmente</button>
+                    </div> -->
+                    
+                    <div class="download-options">
+                        <button id="generateZipBtn" class="btn btn-zip" disabled>Gerar ZIP com PDFs</button>
+                    </div>
+                    
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0%</div>
+                    </div>
+                    
+                    <div id="statusMessage" class="status-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="gerar-pdfs-assinados.js"></script>
+</body>
+</html>

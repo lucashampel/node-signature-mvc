@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assinar PDF</title>
+  <link rel="stylesheet" href="assinar-pdf.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Assinar PDF</h1>
+    <a href="/" class="btn btn-back">Voltar</a>
+    <form id="form-assinar-pdf">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <canvas id="canvas" width="300" height="100" style="border:1px solid;"></canvas>
+      <button type="button" onclick="assinarPDF()">Gerar PDF Assinado</button>
+    </form>
+  </div>
+  <script src="assinar-pdf.js"></script>
+</body>
+</html>

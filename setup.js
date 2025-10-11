@@ -1,63 +1,59 @@
 const fs = require('fs');
 const path = require('path');
 
-// Estrutura de pastas e arquivos
-const projectStructure = {
-  'backend': [
-    'config/db.js',
-    'controllers/pdfController.js',
-    'models/dadosModel.js',
-    'routes/pdfRoutes.js',
-    'utils/pdfUtils.js',
-    'app.js',
-  ],
-  'frontend': [
-    'assets/.gitkeep', // Arquivo vazio para manter pasta no git
-    'css/style.css',
-    'js/main.js',
-    'index.html',
-  ],
-  '.env': null,
-  '.gitignore': null,
-  'package.json': null,
-  'README.md': null,
-};
+// Estrutura de arquivos com seus caminhos relativos
+const files = [
+  '.env',
+  '.gitignore',
+  'package.json',
+  'README.md',
+  'backend/app.js',
+  'backend/config/db.js',
+  'backend/controllers/pdfController.js',
+  'backend/models/dadosModel.js',
+  'backend/routes/pdfRoutes.js',
+  'backend/utils/pdfUtils.js',
+  'frontend/index.html',
+  'frontend/css/style.css',
+  'frontend/js/main.js',
+  'frontend/assets/.gitkeep',
+];
 
-// Função para criar diretórios e arquivos
-function createStructure(basePath, structure) {
-  Object.keys(structure).forEach((item) => {
-    const itemPath = path.join(basePath, item);
-
-    if (structure[item] === null) {
-      // Criar arquivo na raiz
-      if (!fs.existsSync(itemPath)) {
-        fs.writeFileSync(itemPath, getFileContent(item));
-        console.log(`Criado arquivo: ${itemPath}`);
-      }
-    } else {
-      // Criar diretório
-      if (!fs.existsSync(itemPath)) {
-        fs.mkdirSync(itemPath, { recursive: true });
-        console.log(`Criado diretório: ${itemPath}`);
-      }
-      // Criar arquivos dentro do diretório
-      structure[item].forEach((file) => {
-        const filePath = path.join(basePath, item, file);
+// Função para popular arquivos com conteúdo
+function populateFiles(basePath, fileList) {
+  let overwrite = false; // Mude para `true` se quiser sobrescrever arquivos existentes
+  try {
+    fileList.forEach((file) => {
+      const filePath = path.join(basePath, file);
+      
+      // Verifica se o arquivo existe
+      if (!fs.existsSync(filePath)) {
+        console.log(`⚠️ Arquivo não encontrado, criando: ${filePath}`);
         const dir = path.dirname(filePath);
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir, { recursive: true });
-          console.log(`Criado diretório: ${dir}`);
+          console.log(`✅ Criado diretório: ${dir}`);
         }
-        if (!fs.existsSync(filePath)) {
-          fs.writeFileSync(filePath, getFileContent(file));
-          console.log(`Criado arquivo: ${filePath}`);
-        }
-      });
-    }
-  });
+      } else if (fs.readFileSync(filePath, 'utf8').trim() === '' && !overwrite) {
+        console.log(`⚠️ Arquivo vazio, populando: ${filePath}`);
+      } else if (overwrite) {
+        console.log(`⚠️ Sobrescrevendo arquivo: ${filePath}`);
+      } else {
+        console.log(`⚠️ Arquivo já tem conteúdo, pulando: ${filePath}`);
+        return;
+      }
+
+      // Escreve o conteúdo no arquivo
+      fs.writeFileSync(filePath, getFileContent(file), 'utf8');
+      console.log(`✅ Conteúdo adicionado ao arquivo: ${filePath}`);
+    });
+    console.log('🎉 Todos os arquivos foram populados com sucesso!');
+  } catch (error) {
+    console.error('❌ Erro ao popular arquivos:', error.message);
+  }
 }
 
-// Conteúdo inicial para arquivos
+// Conteúdo para cada arquivo
 function getFileContent(fileName) {
   switch (fileName) {
     case '.gitignore':
@@ -97,9 +93,15 @@ PORT=3000
 `;
     case 'backend/app.js':
       return `const express = require('express');
+const mongoose = require('mongoose');
+const connectDB = require('./config/db');
 const app = express();
+
 app.use(express.json());
 app.use(express.static('../frontend'));
+
+// Conectar ao banco
+connectDB();
 
 // Importar rotas
 const pdfRoutes = require('./routes/pdfRoutes');
@@ -236,7 +238,10 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let drawing = false;
 
-canvas.addEventListener('mousedown', () => (drawing = true));
+canvas.addEventListener('mousedown', () => {
+  drawing = true;
+  ctx.beginPath();
+});
 canvas.addEventListener('mouseup', () => (drawing = false));
 canvas.addEventListener('mousemove', (e) => {
   if (drawing) {
@@ -245,11 +250,12 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 `;
+    case 'frontend/assets/.gitkeep':
+      return ''; // Arquivo vazio para manter a pasta no git
     default:
-      return ''; // Arquivos como .gitkeep ou outros ficam vazios
+      return '';
   }
 }
 
-// Criar estrutura
-createStructure(__dirname, projectStructure);
-console.log('Estrutura de pastas e arquivos criada com sucesso!');
+// Executar a população dos arquivos
+populateFiles(__dirname, files);
