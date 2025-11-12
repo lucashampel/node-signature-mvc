@@ -19,11 +19,11 @@ app.use('/api', pdfRoutes);
 
 // Rotas para páginas
 app.get('/assinar-pdf', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/assinar-pdf.html'));
+  res.sendFile(path.join(__dirname, '../frontend/assinar-pdf/assinar-pdf.html'));
 });
 
 app.get('/gerar-pdfs-assinados', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/gerar-pdfs-assinados.html'));
+  res.sendFile(path.join(__dirname, '../frontend/gerar-pdfs-assinados/gerar-pdfs-assinados.html'));
 });
 
 app.get('/', (req, res) => {

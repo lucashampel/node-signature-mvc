@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerar e Gerenciar PDFs</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de PDFs - Menu Principal</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Gerar e Gerenciar PDFs</h1>
-    <a href="/assinar-pdf" class="btn">Assinar PDF</a>
-  </br>
-    <a href="/gerar-pdfs-assinados/gerar-pdfs-assinados.html" class="btn">gerar-pdfs-assinados</a>
-  </div>
+    <div class="menu-container">
+        <div class="menu-header">
+            <h1>📄 Sistema de Gerenciamento de PDFs</h1>
+            <p>Escolha uma das opções abaixo para começar</p>
+        </div>
+
+        <div class="menu-content">
+            <div class="menu-options">
+                <a href="/assinar-pdf" class="menu-btn">
+                    <div class="btn-content">
+                        <span class="btn-icon">✍️</span>
+                        <div class="btn-title">
+                            Assinar PDF
+                        </div>
+                        <p class="btn-description">
+                            Assine documentos digitalmente com facilidade e segurança
+                        </p>
+                    </div>
+                </a>
+
+                <a href="/gerar-pdfs-assinados" class="menu-btn">
+                    <div class="btn-content">
+                        <span class="btn-icon">⚙️</span>
+                        <div class="btn-title">
+                            Gerar PDFs Assinados
+                        </div>
+                        <p class="btn-description">
+                            Gere múltiplos documentos preenchidos a partir de um CSV
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

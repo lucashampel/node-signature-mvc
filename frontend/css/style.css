@@ -1,59 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-}
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-canvas {
-  background: #f0f0f0;
-  margin: 10px 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-/* Estilização das abas */
-.tabs {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
-}
-.tab-link {
-  padding: 10px 20px;
-  cursor: pointer;
-  background: #f0f0f0;
-  margin-right: 5px;
-  border-radius: 5px 5px 0 0;
-}
-.tab-link.active {
-  background: #007bff;
-  color: white;
-}
-.tab-content {
-  display: none;
-}
-.tab-content.active {
-  display: block;
+.menu-container {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
 }
 
-/* Estilização dos formulários */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-input[type="text"], input[type="file"], button {
-  padding: 8px;
-  font-size: 16px;
+
+.menu-header {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 50px 30px;
+    text-align: center;
 }
-button {
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+
+.menu-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
-button:hover {
-  background: #0056b3;
+
+.menu-header p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+.menu-content {
+    padding: 50px 40px;
+}
+
+.menu-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.menu-btn {
+    display: block;
+    padding: 40px 30px;
+    background: white;
+    border: 2px solid #e0e5ec;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.menu-btn:hover::before {
+    opacity: 1;
+}
+
+.menu-btn:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(30, 60, 114, 0.3);
+    border-color: #2a5298;
+}
+
+.menu-btn:hover .btn-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.menu-btn:hover .btn-content {
+    color: white;
+}
+
+.btn-content {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.btn-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.btn-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.btn-description {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.menu-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #e0e5ec;
+}
+
+.footer-info {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.feature-icon {
+    font-size: 1.3rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #28a745;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.badge.new {
+    background: #fd7e14;
+}
+
+@media (max-width: 768px) {
+    .menu-header h1 {
+        font-size: 2rem;
+    }
+
+    .menu-header p {
+        font-size: 1rem;
+    }
+
+    .menu-content {
+        padding: 30px 20px;
+    }
+
+    .menu-options {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .btn-icon {
+        font-size: 3rem;
+    }
+
+    .btn-title {
+        font-size: 1.3rem;
+    }
 }
