@@ -1,6 +1,7 @@
 const canvas = document.getElementById("signaturePad");
 const ctx = canvas.getContext("2d");
 let isDrawing = false;
+let dataURL = null;
 
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", draw);
@@ -29,27 +30,39 @@ function stopDrawing() {
 
 document.getElementById("clearBtn").addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  dataURL = null;
 });
 
 document.getElementById("saveBtn").addEventListener("click", () => {
-  const dataURL = canvas.toDataURL();
-  localStorage.setItem("assinatura", dataURL);
+  dataURL = canvas.toDataURL("image/png");
   alert("Assinatura salva com sucesso!");
 });
 
-document.getElementById("signatureForm").addEventListener("submit", (e) => {
+document.getElementById("signatureForm").addEventListener("submit",async (e) => {
   e.preventDefault();
   const nome = document.getElementById("nome").value;
   const cpf = document.getElementById("cpf").value;
   const dataNascimento = document.getElementById("dataNascimento").value;
-  const assinatura = localStorage.getItem("assinatura");
 
-  if (!assinatura) {
-    alert("Por favor, faça sua assinatura antes de enviar.");
+  if (!dataURL) {
+    alert("Por favor, faça sua assinatura e cliquem em salvar antes de enviar.");
     return;
   }
 
-  const dados = { nome, cpf, dataNascimento, assinatura };
+  const payload = {nome,cpf,dataNascimento,assinatura: dataURL};
+  const res = await fetch("/api/cadastrar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  const json = await res.json();
+  if (!res.ok){
+    alert(json.error ?? "Falha no envio.");
+    return;
+  }
+
+  const dados = { nome, cpf, dataNascimento, dataURL };
   console.log("Dados enviados:", dados);
-  alert("Dados enviados com sucesso!");
+  alert("Dados enviados com sucesso");
 });
