@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import express from 'express';
 import dadosModel from '../models/dadosModel.js';
-import { IsValidCPF, IsValidBirthDate } from '../controllers/validator.ts';
+import { IsValidCPF, IsValidBirthDate } from '../controllers/validator.js';
 import { saveDataUrl } from '../config/storage.js';
 
 const router = express.Router();
