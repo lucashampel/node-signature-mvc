@@ -46,7 +46,7 @@ app.use(session({
 app.use('/api',authenticate, pdfRoutes);
 app.use('/api',authenticate, cadastroRoutes);
 app.use('/auth',authRoutes);
-app.use('/api/admin',requireRole('admin'), adminRoutes);
+app.use('/api/admin',authenticate,requireRole('admin'), adminRoutes);
 
 // Rotas para páginas
 app.get('/assinar-pdf', (req, res) => {
