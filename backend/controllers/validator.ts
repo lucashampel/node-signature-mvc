@@ -1,3 +1,5 @@
+//dps eu transformo em js de volta
+//implementar junto com a api do governo
 export function IsValidCPF(cpf: string): boolean{
   cpf = cpf.replace(/\D/g, '');
   if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
