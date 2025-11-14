@@ -38,7 +38,8 @@ app.use(session({
   cookie: {
     httpOnly: true,        // JS can’t read cookies
     sameSite: 'lax',       // good default for same-origin
-    secure: false          // set true behind HTTPS/proxy in prod
+    secure: false,          // set true behind HTTPS/proxy in prod
+    maxAge: 1000 * 60 * 60 * 24 // 24h 
   }
 }));
 
