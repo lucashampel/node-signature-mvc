@@ -1,0 +1,136 @@
+/* Reset-ish */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #233a77 0, #0a1024 50%, #050712 100%);
+  color: #f9fbff;
+}
+
+/* Layout */
+.login-page {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(8, 16, 40, 0.92);
+  border-radius: 18px;
+  padding: 28px 26px 26px;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+/* Header */
+.logo {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #9fb0ff;
+  margin-bottom: 18px;
+}
+
+/* Form */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+label {
+  font-size: 0.8rem;
+  color: #b7c3ff;
+}
+
+input {
+  padding: 10px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(120, 144, 255, 0.5);
+  background: rgba(3, 9, 30, 0.85);
+  color: #f5f7ff;
+  outline: none;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+input::placeholder {
+  color: #8089b5;
+}
+
+input:focus {
+  border-color: #b0c2ff;
+  box-shadow: 0 0 0 1px rgba(167, 189, 255, 0.7);
+  background: rgba(6, 14, 44, 0.95);
+}
+
+/* Button */
+.btn-primary {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #4c7dff, #7a9dff);
+  color: #fdfdff;
+  box-shadow: 0 10px 24px rgba(21, 54, 147, 0.8);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 12px 32px rgba(27, 71, 176, 0.9);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 16px rgba(21, 54, 147, 0.7);
+}
+
+/* Error message */
+.error-message {
+  min-height: 18px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #ff9b9b;
+}
+
+/* Small screens */
+@media (max-width: 400px) {
+  .login-card {
+    padding: 22px 18px 20px;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+}

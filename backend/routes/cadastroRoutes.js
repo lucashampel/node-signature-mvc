@@ -26,6 +26,7 @@ router.post('/cadastrar', (req, res) => {
         const { url: imageUrl } = saveDataUrl(assinatura); // throws se inválido
         dadosModel.save(nome, { cpf, birthDate, imageUrl });
     } catch (e) {
+        console.log(e);
         return res.status(400).json({ error: 'Assinatura inválida ou muito grande.' });
     }
 
@@ -33,15 +34,15 @@ router.post('/cadastrar', (req, res) => {
     //Considerar usuario repetido? validação no banco de dados tambem?
 });
 
-router.get('/cadastros', (req, res) => {
-    // Logica de pegar os cadastros, ser capaz de listar de diferentes formas os dados, para visualização
-    try {
-        const results = dadosModel.findAll();
-        res.json(results);
-    } catch (err) {
-        console.error('Erro ao buscar cadastros:', err);
-        res.status(500).json({ error: 'Erro ao buscar cadastros.' });
-    }
-});
+// router.get('/cadastros', (req, res) => {
+//     // Logica de pegar os cadastros, ser capaz de listar de diferentes formas os dados, para visualização
+//     try {
+//         const results = dadosModel.findAll();
+//         res.json(results);
+//     } catch (err) {
+//         console.error('Erro ao buscar cadastros:', err);
+//         res.status(500).json({ error: 'Erro ao buscar cadastros.' });
+//     }
+// });
 
 export default router;

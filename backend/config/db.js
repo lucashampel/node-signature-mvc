@@ -13,6 +13,9 @@ export const LOGIN_ATTEMPTS_TABLE = 'login_attempts';
 // Conectar ao SQLite (cria o arquivo database.db se não existir)
 const db = new sqlite3(path.join(currentDir, '../../database.db'));
 
+db.pragma('journal_mode = WAL');      // better concurrent access
+db.pragma('busy_timeout = 5000');     // wait up to 5s if locked
+
 // Criar tabelas
 CreateDadosTable(DADOS_TABLE).run();
 CreateDadosTable(PDFDADOS_TABLE).run();
@@ -25,7 +28,7 @@ function CreateDadosTable(name) {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
     dados TEXT,
-    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
 }

@@ -1,6 +1,11 @@
 import db, { DADOS_TABLE,PDFDADOS_TABLE } from '../config/db.js';
 import { urlToFilename, deleteStored } from '../config/storage.js';
 
+function dropTable(table) {
+  const stmt = db.prepare(`DROP TABLE IF EXISTS ${table}`);
+  stmt.run();
+}
+
 function clearTableWithFiles(table) {
   const rows = db.prepare(`SELECT dados FROM ${table}`).all();
 
@@ -24,8 +29,8 @@ function clearTableWithFiles(table) {
 
 export function clearAllData() {
   const txAll = db.transaction(() => {
-    clearTableWithFiles(DADOS_TABLE);
-    clearTableWithFiles(PDFDADOS_TABLE);
+    dropTable(DADOS_TABLE);
+    dropTable(PDFDADOS_TABLE);
    
   });
   txAll();

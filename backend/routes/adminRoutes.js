@@ -1,6 +1,8 @@
 import express from 'express';
-import { clearAllData } from '../services/cleanupService.js';
+import { clearAllData } from '../services/dbService.js';
 import { createUser } from '../services/authService.js';
+import {ListUsers} from '../services/userService.js';
+import { ListCadastros } from '../services/cadastroService.js';
 
 const router = express.Router();
 //Test only
@@ -11,6 +13,30 @@ router.delete('/clear-all', (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Falha ao limpar base e arquivos.' });
+  }
+});
+
+router.get('/users', (req, res) => {
+  const { from, to } = req.query;
+
+  try {
+    const users = ListUsers({ from, to });
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+});
+
+router.get('/cadastros', (req, res) => {
+  const { from, to } = req.query;
+
+  try {
+    const users = ListCadastros({ from, to });
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch users' });
   }
 });
 

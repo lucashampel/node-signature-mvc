@@ -10,3 +10,13 @@ export function requireRole(role) {
     next();
   };
 }
+
+export function requireLoginPage(req, res, next) {
+  console.log('requireLoginPage session.user:', req.session.user);
+  if (!req.session.user) {
+    console.log('→ redirecting to /login');
+    return res.redirect('/login');
+  }
+  console.log('→ user logged in, continuing');
+  next();
+}

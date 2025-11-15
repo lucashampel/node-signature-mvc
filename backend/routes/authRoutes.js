@@ -1,8 +1,9 @@
 import express from 'express';
 import rateLimit from 'express-rate-limit';
+import { __dirname } from '../server.js';
 import { verifyPassword, findUserById } from '../services/authService.js';
 import db from '../config/db.js';
-
+import path from 'path';
 const router = express.Router();
 
 const loginLimiter = rateLimit({
