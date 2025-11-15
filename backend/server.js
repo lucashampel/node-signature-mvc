@@ -54,8 +54,9 @@ app.get('/gerar-pdfs-assinados', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/login/login.html'));
 });
+
 
 app.get('/home',requireLoginPage, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
@@ -68,6 +69,9 @@ ensureAdminUser().catch(err => {
 
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/login/login.html'));
+});
+app.get('/admin', (req,res) => {
+  res.sendFile(path.join(__dirname, '../frontend/admin/admin.html'));
 });
 // Rotas da API
 app.use('/api',authenticate, requireLoginPage, pdfRoutes);

@@ -181,6 +181,27 @@ body {
     z-index: 1;
 }
 
+.User {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.logout-btn {
+  margin-right: auto;
+}
+
+.admin {
+  margin-left: auto;
+}
+
+#admin-link {
+  display: none;
+}
+
+
 .badge.new {
     background: #fd7e14;
 }
