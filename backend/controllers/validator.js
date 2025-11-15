@@ -1,9 +1,8 @@
-//dps eu transformo em js de volta
 //implementar junto com a api do governo
-export function IsValidCPF(cpf: string): boolean{
+export function IsValidCPF(cpf){
   cpf = cpf.replace(/\D/g, '');
   if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
-  const calcCheck = (len: number) => {
+  const calcCheck = (len) => {
     const sum = cpf
       .slice(0, len)
       .split('')
@@ -13,9 +12,8 @@ export function IsValidCPF(cpf: string): boolean{
   };
   return calcCheck(9) === Number(cpf[9]) && calcCheck(10) === Number(cpf[10]);
 }
-export type BirthDateResult =  | { ok: true }  | { ok: false; error: string };
 
-export function IsValidBirthDate(birthDate : string): BirthDateResult {
+export function IsValidBirthDate(birthDate) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(birthDate)) {
     return { ok: false, error: 'Birth date must be in YYYY-MM-DD format.' };
   }
