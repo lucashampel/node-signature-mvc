@@ -29,14 +29,22 @@ router.get('/users', (req, res) => {
 });
 
 router.get('/cadastros', (req, res) => {
-  const { from, to } = req.query;
+  const { from, to, export: exportType } = req.query;
 
   try {
     const users = ListCadastros({ from, to });
+    
+    if (exportType === 'csv') {
+      const csv = convertCadastrosToCSV(users);
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename="cadastros.csv"');
+      return res.send(csv);
+    }
+
     res.json(users);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch users' });
+    res.status(500).json({ error: 'Failed to fetch cadastros' });
   }
 });
 
@@ -60,5 +68,31 @@ const { email, password, role = 'user' } = req.body ?? {};
     return res.status(500).json({ error: 'Erro ao criar usuário.' });
   }
 });
+
+function convertCadastrosToCSV(cadastros) {
+  const header = "nome,cpf,birthDate,created_at";
+
+  if (!cadastros?.length) return header + "\n";
+
+  const rows = cadastros.map(c => {
+    let data = {};
+
+    try {
+      data = typeof c.dados === "string" ? JSON.parse(c.dados) : (c.dados || {});
+    } catch (err) {
+      data = {};
+    }
+
+    return [
+      c.nome ?? "",
+      data.cpf ?? "",
+      data.birthDate ?? "",
+      c.created_at ?? ""
+    ].join(",");
+  });
+
+  return [header, ...rows].join("\n");
+}
+
 
 export default router;

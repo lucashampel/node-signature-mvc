@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>Admin Dashboard</h1>
+
+    <div class="user-controls">
+      <button id="logout-btn">Logout</button>
+      <a href="/home">Voltar ao Home</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- FILTERS -->
+    <section class="filters">
+      <h2>Filtros</h2>
+      <div class="filter-row">
+        <div>
+          <label>De:</label>
+          <input type="date" id="from" />
+        </div>
+        <div>
+          <label>Até:</label>
+          <input type="date" id="to" />
+        </div>
+        <button id="filter-btn">Aplicar Filtros</button>
+      </div>
+    </section>
+
+    <!-- USERS -->
+    <section class="table-section">
+      <h2>Usuários</h2>
+      <div class="table-wrapper">
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Criado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- CADASTROS -->
+    <section class="table-section">
+      <h2>Cadastros</h2>
+      <div class="table-wrapper">
+      <table id="cadastros-table">
+        <thead>
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Criado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button id="export-csv">Exportar CSV</button>
+    </section>
+
+    <!-- CREATE USER -->
+    <section class="create-user">
+      <h2>Criar Novo Usuário</h2>
+
+      <form id="create-user-form">
+        <input type="text" id="new-email" placeholder="Email" required />
+        <input type="password" id="new-password" placeholder="Senha" required />
+
+        <select id="new-role">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <button type="submit">Criar Usuário</button>
+      </form>
+
+      <p id="create-user-msg"></p>
+    </section>
+
+  </main>
+
+  <script src="../js/check-auth.js"></script>
+  <script src="admin.js"></script>
+
+</body>
+</html>
